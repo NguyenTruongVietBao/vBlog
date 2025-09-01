@@ -22,3 +22,15 @@ export function formatDateTime(date: string) {
     minute: '2-digit',
   });
 }
+
+export const normalizePath = (path: string) => {
+  return path.startsWith('/') ? path.slice(1) : path;
+};
+
+const isClient = typeof window !== 'undefined';
+export const getAccessTokenFromLocalStorage = () =>
+  isClient ? localStorage.getItem('accessToken') : null;
+export const setAccessTokenToLocalStorage = (accessToken: string) =>
+  isClient ? localStorage.setItem('accessToken', accessToken) : null;
+export const removeAccessTokenFromLocalStorage = () =>
+  isClient ? localStorage.removeItem('accessToken') : null;
